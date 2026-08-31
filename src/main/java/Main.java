@@ -6,6 +6,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 
 
 public class Main extends Application {
@@ -15,6 +16,9 @@ public class Main extends Application {
     private TextField userInput;
     private Button sendButton;
     private Scene scene;
+    private Image idleImage = new Image(this.getClass().getResourceAsStream("/images/KawKaw_battle_idle_frame_1.png"));
+    private Image sparedImage = new Image(this.getClass().getResourceAsStream("/images/KawKaw_battle_spared_frame_1.png"));
+    
 
     @Override
     public void start(Stage stage) {
@@ -25,6 +29,9 @@ public class Main extends Application {
 
          userInput = new TextField();
          sendButton = new Button("Send");
+
+         DialogBox dialogBox = new DialogBox("Hello!", idleImage);
+         dialogContainer.getChildren().addAll(dialogBox);   
 
          AnchorPane mainLayout = new AnchorPane();
          mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
