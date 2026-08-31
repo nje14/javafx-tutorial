@@ -20,6 +20,11 @@ public class Main extends Application {
     private Image sparedImage = new Image(
             this.getClass().getResourceAsStream("/images/KawKaw_battle_spared_frame_1.png"));
 
+    private void handleUserInput() {
+            dialogContainer.getChildren().addAll(new DialogBox(userInput.getText(), sparedImage));
+            userInput.clear();
+        }
+    
     @Override
     public void start(Stage stage) {
 
@@ -29,9 +34,15 @@ public class Main extends Application {
 
         userInput = new TextField();
         sendButton = new Button("Send");
+        
+        sendButton.setOnMouseClicked((event) -> {
+            handleUserInput();
+        });
+        userInput.setOnAction((event) -> {
+            handleUserInput();
+        });
 
-        DialogBox dialogBox = new DialogBox("Hello!", idleImage);
-        dialogContainer.getChildren().addAll(dialogBox);
+        
 
         AnchorPane mainLayout = new AnchorPane();
         mainLayout.getChildren().addAll(scrollPane, userInput, sendButton);
