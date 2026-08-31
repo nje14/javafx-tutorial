@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    private Duke duke = new Duke();
+    
     private ScrollPane scrollPane;
     private VBox dialogContainer;
     private TextField userInput;
@@ -21,7 +23,12 @@ public class Main extends Application {
             this.getClass().getResourceAsStream("/images/KawKaw_battle_spared_frame_1.png"));
 
     private void handleUserInput() {
-            dialogContainer.getChildren().addAll(new DialogBox(userInput.getText(), sparedImage));
+            String userText = userInput.getText();
+            String dukeText = duke.respond(userText);
+            dialogContainer.getChildren().addAll(
+                new DialogBox(userInput.getText(), idleImage), 
+                new DialogBox(dukeText, sparedImage)
+            );
             userInput.clear();
         }
     
